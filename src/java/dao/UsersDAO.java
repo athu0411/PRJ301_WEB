@@ -75,7 +75,7 @@ public class UsersDAO {
 
             stmt.setString(1, username);
             stmt.setString(2, PasswordUtil.encodeString(password)); // mã hóa để so khớp với passwordhash
-
+//            stmt.setString(2, password); 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Users user = new Users();

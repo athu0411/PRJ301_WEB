@@ -216,7 +216,7 @@ public class UserController extends HttpServlet {
             session.setAttribute("user", user);
             if (user.getRole().equalsIgnoreCase("admin")) {
                 ProductsDAO productDAO = new ProductsDAO(); 
-                session.setAttribute("productList", productDAO.getAllProducts());
+                request.setAttribute("productList", productDAO.getAllProducts());
                 response.sendRedirect("admin-product.jsp");
             } else {
                 response.sendRedirect("index.jsp");

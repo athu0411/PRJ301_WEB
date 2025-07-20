@@ -24,7 +24,6 @@ import model.Products;
  *
  * @author Duy
  */
-
 @MultipartConfig
 @WebServlet(name = "AddProductController", urlPatterns = {"/AddProductController"})
 public class AddProductController extends HttpServlet {
@@ -61,7 +60,7 @@ public class AddProductController extends HttpServlet {
                     imageName = generateImageUrl(fileName);
 
                     // Thư mục lưu ngoài project
-                    String targetPath = "D:/MyUploads/ProductImages";
+                    String targetPath = "D:/FPTU/Semester 4/PRJ301/VienBama/MLB_Store/web/images/uploads";
                     File targetDir = new File(targetPath);
                     if (!targetDir.exists()) {
                         targetDir.mkdirs();
@@ -92,6 +91,7 @@ public class AddProductController extends HttpServlet {
             } else {
                 request.setAttribute("errorMessage", "Added Product failed, try again");
             }
+            request.setAttribute("productList", productDAO.getAllProducts());
 
         } catch (Exception e) {
             log("Error at AddProductController: " + e.toString());

@@ -183,7 +183,7 @@
             <h1>MLB Store</h1>
             <nav>
                 <a href="index.jsp">Trang chủ</a>
-                <a href="product">Sản phẩm</a>
+                <a href="MainController?action=ViewProductPage">Sản phẩm</a>
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
                         <a href="cart.jsp">Giỏ hàng</a>

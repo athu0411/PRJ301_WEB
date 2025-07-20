@@ -40,7 +40,7 @@ public class UpdateProductController extends HttpServlet {
      */
     private static final String ERROR = "admin-product.jsp";
     private static final String SUCCESS = "admin-product.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -98,20 +98,21 @@ public class UpdateProductController extends HttpServlet {
 
             // Update DB
             boolean success = productDAO.updateProduct(product);
-            
+
             if (success) {
                 request.getSession().setAttribute("productList", new ProductsDAO().getAllProducts());
                 request.setAttribute("successMessage", "Cập nhật sản phẩm thành công!");
             } else {
                 request.setAttribute("errorMessage", "Có lỗi xảy ra khi cập nhật sản phẩm!");
             }
+            request.setAttribute("productList", productDAO.getAllProducts());
         } catch (Exception e) {
-            log("Error at UpdateProductController: " + e.toString());            
+            log("Error at UpdateProductController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-    
+
     private String generateImageUrl(String url) {
         String uuid = UUID.randomUUID().toString();
 
@@ -121,10 +122,10 @@ public class UpdateProductController extends HttpServlet {
         if (dotIndex >= 0 && dotIndex < url.length() - 1) {
             extension = url.substring(dotIndex);
         }
-        
+
         return uuid + extension;
     }
-    
+
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         for (String cd : contentDisp.split(";")) {

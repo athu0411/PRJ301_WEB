@@ -6,18 +6,20 @@ package controller;
 
 import dao.ProductsDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Products;
 
 /**
  *
  * @author Duy
  */
-@WebServlet(name = "DeleteProductController", urlPatterns = {"/DeleteProductController"})
-public class DeleteProductController extends HttpServlet {
+@WebServlet(name = "ViewProductDetailController", urlPatterns = {"/ViewProductDetailController"})
+public class ViewProductDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,29 +30,26 @@ public class DeleteProductController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-product.jsp";
-    private static final String SUCCESS = "admin-product.jsp";
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = "product-detail.jsp";
         try {
-            String id = request.getParameter("productId");
-            ProductsDAO productDAO = new ProductsDAO();
-
-            boolean check = productDAO.deleteById(id);
-            if (check) {
-                request.getSession().setAttribute("productList", productDAO.getAllProducts());
-                request.getSession().setAttribute("successMessage", "Xoá sản phẩm thành công!");
-                url = SUCCESS;
+            String id = request.getParameter("id");
+            if (id != null && !id.isEmpty()) {
+                int productId = Integer.parseInt(id);
+                ProductsDAO productDAO = new ProductsDAO();
+                Products foundProduct = productDAO.getProductById(productId);
+                if (foundProduct != null) {
+                    request.setAttribute("product", foundProduct); 
+                } else {
+                    request.setAttribute("errorMessage", "Không tìm thấy sản phẩm có ID: " + id);
+                }
             } else {
-                request.getSession().setAttribute("errorMessage", "Có lỗi xảy ra khi xóa sản phẩm!");
+                request.setAttribute("errorMessage", "Thiếu ID sản phẩm");
             }
-
-            request.setAttribute("productList", productDAO.getAllProducts());
         } catch (Exception e) {
-            log("Error at DeleteProduct: " + e.toString());
+            request.setAttribute("errorMessage", "Lỗi khi tải sản phẩm: " + e.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

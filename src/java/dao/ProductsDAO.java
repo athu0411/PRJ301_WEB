@@ -85,8 +85,8 @@ public class ProductsDAO {
         return result;
     }
 
-    public List<Products> getAllProducts() throws SQLException, ClassNotFoundException {
-        List<Products> productList = new ArrayList<>();
+    public ArrayList<Products> getAllProducts() throws SQLException, ClassNotFoundException {
+        ArrayList<Products> productList = new ArrayList<>();
         String sql = "SELECT ProductID, ProductName, Description, Price, Quantity, ImageURL, CategoryID FROM Products";
         try ( Connection conn = DatabaseConnection.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql);  ResultSet rs = stmt.executeQuery()) {
 
@@ -127,6 +127,47 @@ public class ProductsDAO {
             }
         }
         return resultList;
+    }
+
+    public List<Products> getProductsByPage(int page, int pageSize) throws SQLException, ClassNotFoundException {
+        List<Products> pagedList = new ArrayList<>();
+        String sql = "SELECT ProductID, ProductName, Description, Price, Quantity, ImageURL, CategoryID "
+                + "FROM Products "
+                + "ORDER BY ProductID "
+                + "OFFSET ? ROWS FETCH NEXT ? ROWS ONLY"; 
+
+        try ( Connection conn = DatabaseConnection.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            int offset = (page - 1) * pageSize;
+            stmt.setInt(1, offset);
+            stmt.setInt(2, pageSize);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Products product = new Products();
+                product.setProductID(rs.getInt("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setDescription(rs.getString("Description"));
+                product.setPrice(rs.getDouble("Price"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setImgUrl(rs.getString("ImageURL"));
+                product.setCategoryID(rs.getInt("CategoryID"));
+                pagedList.add(product);
+            }
+        }
+
+        return pagedList;
+    }
+
+    public int getTotalProductCount() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT COUNT(*) AS total FROM Products";
+        try ( Connection conn = DatabaseConnection.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql);  ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        }
+        return 0;
     }
 
 }

@@ -16,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author vient
  */
-
 @MultipartConfig
 @WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
@@ -26,19 +25,25 @@ public class MainController extends HttpServlet {
 
     private static final String USER = "Login";
     private static final String USER_CONTROLLER = "UserController";
-    
+
     private static final String REGISTER = "Register";
     private static final String REGISTER_PAGE = "Sign Up";
     private static final String REGISTER_VIEW = "register.jsp";
 
     private static final String ADD_PRODUCT = "AddProduct";
     private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
-    
+
     private static final String DELETE_PRODUCT = "DeleteProduct";
     private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
-    
+
     private static final String UPDATE_PRODUCT = "UpdateProduct";
     private static final String UPDATE_PRODUCT_CONTROLLER = "UpdateProductController";
+
+    private static final String VIEW_PRODUCT_PAGE = "ViewProductPage";
+    private static final String VIEW_PRODUCT_CONTROLLER = "ViewProductController";
+    
+    private static final String VIEW_PRODUCT_DETAIL_PAGE = "ViewProductDetail";
+    private static final String VIEW_PRODUCT_DETAIL_CONTROLLER = "ViewProductDetailController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -55,11 +60,15 @@ public class MainController extends HttpServlet {
             } else if (WELCOME_VIEW.equals(action)) {
                 action = WELCOME;
             } else if (ADD_PRODUCT.equals(action)) {
-                url = ADD_PRODUCT_CONTROLLER; 
-            } else if  (DELETE_PRODUCT.equals(action)) {
-                url = DELETE_PRODUCT_CONTROLLER; 
+                url = ADD_PRODUCT_CONTROLLER;
+            } else if (DELETE_PRODUCT.equals(action)) {
+                url = DELETE_PRODUCT_CONTROLLER;
             } else if (UPDATE_PRODUCT.equals(action)) {
-                url = UPDATE_PRODUCT_CONTROLLER; 
+                url = UPDATE_PRODUCT_CONTROLLER;
+            } else if(VIEW_PRODUCT_PAGE.equals(action)) {
+                url = VIEW_PRODUCT_CONTROLLER;
+            } else if(VIEW_PRODUCT_DETAIL_PAGE.equals(action)) {
+                url = VIEW_PRODUCT_DETAIL_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

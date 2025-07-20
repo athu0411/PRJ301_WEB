@@ -6,18 +6,21 @@ package controller;
 
 import dao.ProductsDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.Products;
 
 /**
  *
  * @author Duy
  */
-@WebServlet(name = "DeleteProductController", urlPatterns = {"/DeleteProductController"})
-public class DeleteProductController extends HttpServlet {
+@WebServlet(name = "ViewProductController", urlPatterns = {"/ViewProductController"})
+public class ViewProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,29 +31,38 @@ public class DeleteProductController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-product.jsp";
-    private static final String SUCCESS = "admin-product.jsp";
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            String id = request.getParameter("productId");
-            ProductsDAO productDAO = new ProductsDAO();
+        String url = "products.jsp";
 
-            boolean check = productDAO.deleteById(id);
-            if (check) {
-                request.getSession().setAttribute("productList", productDAO.getAllProducts());
-                request.getSession().setAttribute("successMessage", "Xoá sản phẩm thành công!");
-                url = SUCCESS;
-            } else {
-                request.getSession().setAttribute("errorMessage", "Có lỗi xảy ra khi xóa sản phẩm!");
+        try {
+            final int pageSize = 10;
+            
+            String pageParam = request.getParameter("page");
+            int page = 1;
+            if (pageParam != null && !pageParam.isEmpty()) {
+                page = Integer.parseInt(pageParam);
             }
 
-            request.setAttribute("productList", productDAO.getAllProducts());
+            ProductsDAO productDAO = new ProductsDAO();
+
+            ArrayList<Products> productList = new ArrayList<>(productDAO.getProductsByPage(page, pageSize));
+
+            int totalProduct = productDAO.getTotalProductCount();
+            int totalPages = (int) Math.ceil((double) totalProduct / pageSize);
+
+            if (productList.isEmpty()) {
+                request.setAttribute("errorMessage", "Không có sản phẩm");
+            } else {
+                request.setAttribute("LIST_PRODUCT", productList);
+            }
+
+            request.setAttribute("currentPage", page);
+            request.setAttribute("totalPages", totalPages);
+
         } catch (Exception e) {
-            log("Error at DeleteProduct: " + e.toString());
+            e.printStackTrace(); 
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
