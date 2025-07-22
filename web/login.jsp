@@ -7,7 +7,8 @@
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: #f0f2f5;
+                background-color: #121212;
+                color: #f0f0f0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -15,10 +16,10 @@
             }
 
             .login-container {
-                background: white;
+                background: #1e1e1e;
                 padding: 60px 80px;
                 border-radius: 18px;
-                box-shadow: 0 0 25px rgba(0,0,0,0.25);
+                box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
                 width: 600px;
                 box-sizing: border-box;
             }
@@ -27,10 +28,12 @@
                 text-align: center;
                 font-size: 32px;
                 margin-bottom: 35px;
+                color: #ffffff;
             }
 
             label {
                 font-size: 20px;
+                color: #cccccc;
             }
 
             input[type="text"], input[type="password"], .btn {
@@ -38,9 +41,16 @@
                 padding: 16px 20px;
                 margin: 14px 0;
                 border-radius: 8px;
-                border: 1px solid #ccc;
+                border: 1px solid #444;
+                background-color: #2c2c2c;
+                color: #f0f0f0;
                 box-sizing: border-box;
                 font-size: 18px;
+            }
+
+            input[type="text"]::placeholder,
+            input[type="password"]::placeholder {
+                color: #999999;
             }
 
             .btn {
@@ -51,27 +61,28 @@
             }
 
             .btn-login {
-                background-color: #4CAF50;
+                background-color: #388e3c;
             }
 
             .btn-login:hover {
-                background-color: #45a049;
+                background-color: #2e7d32;
             }
 
             .btn-register {
-                background-color: #2196F3;
+                background-color: #1976d2;
             }
 
             .btn-register:hover {
-                background-color: #1e88e5;
+                background-color: #1565c0;
             }
 
             .error {
-                color: red;
+                color: #ff6b6b;
                 text-align: center;
                 margin-bottom: 20px;
                 font-size: 18px;
             }
+
         </style>
     </head>
     <body>

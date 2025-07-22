@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 /**
@@ -13,19 +14,25 @@ import java.time.LocalDate;
 public class Orders {
     private Integer orderID;
     private Integer userID;
-    private LocalDate orderDate;
+    private Date orderDate;
     private Double totalAmout;
     private String status;
 
     public Orders() {
     }
 
-    public Orders(Integer orderID, Integer userID, LocalDate orderDate, Double totalAmout, String status) {
+    public Orders(Integer orderID, Integer userID, Date orderDate, Double totalAmout, String status) {
         this.orderID = orderID;
         this.userID = userID;
         this.orderDate = orderDate;
         this.totalAmout = totalAmout;
         this.status = status;
+    }
+    
+    public Orders(Integer userID, Date orderDate, Double totalAmout) {
+        this.userID = userID;
+        this.orderDate = orderDate;
+        this.totalAmout = totalAmout;
     }
 
     public Integer getOrderID() {
@@ -44,11 +51,11 @@ public class Orders {
         this.userID = userID;
     }
 
-    public LocalDate getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 

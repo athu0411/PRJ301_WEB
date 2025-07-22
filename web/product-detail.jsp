@@ -153,19 +153,20 @@
         <div class="container">
             <c:choose>
                 <c:when test="${not empty product}">
-                    <img class="product-img" src="images/uploads/${product.imgUrl}" alt="${product.productName}" onerror="this.src='images/default.jpg'">
+                    <img src="${pageContext.request.contextPath}/image?name=${product.imgUrl}"
+                         alt="${product.productName}"
+                         onerror="this.src='images/default.jpg'" />
                     <div class="product-name">${product.productName}</div>
                     <div class="product-price">₫${product.price}</div>
                     <div class="product-description">${product.description}</div>
                     <div class="product-qty">Số lượng còn lại: ${product.quantity}</div>
 
                     <!-- Thêm vào giỏ hàng -->
-                    <form action="MainController" method="post" style="margin-top: 20px;">
+                    <form action="MainController" method="post" style="margin-top: 5px;">
                         <input type="hidden" name="action" value="AddToCart" />
-                        <input type="hidden" name="id" value="${product.productID}" />
-                        <label for="quantity">Số lượng:</label>
-                        <input type="number" name="quantity" id="quantity" value="1" min="1" max="${product.quantity}" required style="width: 60px; margin-left: 6px; padding: 4px;" />
-                        <button type="submit" class="btn" style="margin-left: 10px;">Thêm vào giỏ</button>
+                        <input type="hidden" name="productId" value="${product.productID}" />
+                        <input type="number" name="quantity" value="1" min="1" max="${product.quantity}" style="width: 60px; padding: 4px;" required />
+                        <button type="submit" class="btn" style="margin-left: 6px;">Thêm vào giỏ</button>
                     </form>
 
                     <a class="back-link" href="MainController?action=ViewProductPage">← Quay lại danh sách</a>

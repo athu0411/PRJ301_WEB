@@ -29,6 +29,15 @@ package model;
         this.imgUrl = imgUrl;
         this.categoryID = categoryID;
     }
+    
+    public Products(String productName, String description, Double price, Integer quantity, String imgUrl, Integer categoryID) {
+        this.productName = productName;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.imgUrl = imgUrl;
+        this.categoryID = categoryID;
+    }
 
     public Integer getProductID() {
         return productID;
@@ -85,6 +94,7 @@ package model;
     public void setCategoryID(Integer categoryID) {
         this.categoryID = categoryID;
     }
+    
     
     
 }

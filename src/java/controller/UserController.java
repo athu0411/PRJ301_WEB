@@ -215,9 +215,7 @@ public class UserController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             if (user.getRole().equalsIgnoreCase("admin")) {
-                ProductsDAO productDAO = new ProductsDAO(); 
-                request.setAttribute("productList", productDAO.getAllProducts());
-                response.sendRedirect("admin-product.jsp");
+                request.getRequestDispatcher("ViewAdminProductController").forward(request, response);
             } else {
                 response.sendRedirect("index.jsp");
             }
@@ -260,15 +258,13 @@ public class UserController extends HttpServlet {
             checkEmail = "Email đã được sử dụng";
             check = true;
         }
-        
-        if(check) {
+
+        if (check) {
             UsersErrors error = new UsersErrors(checkName, checkPass, fullName, checkEmail, phone, address);
             request.setAttribute("USER_ERROR", error);
             request.getRequestDispatcher("/register.jsp").forward(request, response);
             return;
         }
-        
-        
 
         Users user = new Users(username, password, email, fullName, phone, address);
 

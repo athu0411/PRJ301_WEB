@@ -1,0 +1,12 @@
+Các chức năng chính : 
++ Người 1
+- Login : khi vào thì kiểm tra user có role là admin thì sẽ qua trang admin-product, customer thì cho mua sản phẩm.
+- Register : đăng kí theo các field và có mã hóa mật khẩu trong db.
+- Khi kiểm tra role Admin thì đăng kí trước, sau đó vào trong db sửa lại role của user vừa đăng kí (nếu muốn check chức năng crud product của admin).
+- Checkout : lấy sản phẩm từ giỏ hàng, cập nhật lại bảng product và sau đó hiển thị mua thành công (giỏ hàng trống).
+
++ Người 2
+- CRUD product : thêm xóa sửa sản phẩm (phần của admin), có load hình ảnh 
+
++ Người 3 
+- Hiển thị detail của sản phẩm khi user muốn xem + load sản phẩm lên trang index.

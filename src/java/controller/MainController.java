@@ -26,12 +26,18 @@ public class MainController extends HttpServlet {
     private static final String USER = "Login";
     private static final String USER_CONTROLLER = "UserController";
 
+    private static final String USER_LOGOUT = "Logout";
+    private static final String USER_LOGOUT_CONTROLLER = "UserController";
+
     private static final String REGISTER = "Register";
     private static final String REGISTER_PAGE = "Sign Up";
     private static final String REGISTER_VIEW = "register.jsp";
 
     private static final String ADD_PRODUCT = "AddProduct";
     private static final String ADD_PRODUCT_CONTROLLER = "AddProductController";
+    
+    private static final String VIEW_ADMIN_PRODUCT_PAGE = "ViewAdminProduct";
+    private static final String VIEW_ADMIN_PRODUCT_CONTROLLER = "ViewAdminProductController";
 
     private static final String DELETE_PRODUCT = "DeleteProduct";
     private static final String DELETE_PRODUCT_CONTROLLER = "DeleteProductController";
@@ -41,9 +47,21 @@ public class MainController extends HttpServlet {
 
     private static final String VIEW_PRODUCT_PAGE = "ViewProductPage";
     private static final String VIEW_PRODUCT_CONTROLLER = "ViewProductController";
-    
+
     private static final String VIEW_PRODUCT_DETAIL_PAGE = "ViewProductDetail";
     private static final String VIEW_PRODUCT_DETAIL_CONTROLLER = "ViewProductDetailController";
+
+    private static final String ADD_CART = "AddToCart";
+    private static final String ADD_CART_CONTROLLER = "AddToCartController";
+
+    private static final String REMOVE_CART = "RemoveCart";
+    private static final String REMOVE_CART_CONTROLLER = "RemoveCartController";
+
+    private static final String EDIT_CART = "EditCart";
+    private static final String EDIT_CART_CONTROLLER = "EditCartController";
+    
+    private static final String CHECKOUT = "Checkout";
+    private static final String CHECKOUT_CONTROLLER = "CheckoutController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -65,10 +83,22 @@ public class MainController extends HttpServlet {
                 url = DELETE_PRODUCT_CONTROLLER;
             } else if (UPDATE_PRODUCT.equals(action)) {
                 url = UPDATE_PRODUCT_CONTROLLER;
-            } else if(VIEW_PRODUCT_PAGE.equals(action)) {
+            } else if (VIEW_PRODUCT_PAGE.equals(action)) {
                 url = VIEW_PRODUCT_CONTROLLER;
-            } else if(VIEW_PRODUCT_DETAIL_PAGE.equals(action)) {
+            } else if (VIEW_PRODUCT_DETAIL_PAGE.equals(action)) {
                 url = VIEW_PRODUCT_DETAIL_CONTROLLER;
+            } else if (ADD_CART.equals(action)) {
+                url = ADD_CART_CONTROLLER;
+            } else if (USER_LOGOUT.equals(action)) {
+                url = USER_LOGOUT_CONTROLLER;
+            } else if (REMOVE_CART.equals(action)) {
+                url = REMOVE_CART_CONTROLLER;
+            } else if (EDIT_CART.equals(action)) {
+                url = EDIT_CART_CONTROLLER;
+            } else if (VIEW_ADMIN_PRODUCT_PAGE.equals(action)) {
+                url = VIEW_ADMIN_PRODUCT_CONTROLLER;
+            } else if (CHECKOUT.equals(action)) {
+                url = CHECKOUT_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

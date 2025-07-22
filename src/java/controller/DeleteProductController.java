@@ -28,8 +28,8 @@ public class DeleteProductController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "admin-product.jsp";
-    private static final String SUCCESS = "admin-product.jsp";
+    private static final String ERROR = "ViewAdminProductController";
+    private static final String SUCCESS = "ViewAdminProductController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

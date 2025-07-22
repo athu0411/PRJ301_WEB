@@ -38,7 +38,7 @@ public class AddProductController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private static final String ERROR = "add-product.jsp";
-    private static final String SUCCESS = "admin-product.jsp";
+    private static final String SUCCESS = "ViewAdminProductController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,7 +51,7 @@ public class AddProductController extends HttpServlet {
             int categoryID = Integer.parseInt(request.getParameter("categoryID"));
             String description = request.getParameter("description");
 
-            String imageName = "default-balo.jpg";
+            String imageName = "default-shirt.jpg";
             Part imagePart = request.getPart("image");
 
             if (imagePart != null && imagePart.getSize() > 0) {
@@ -60,7 +60,7 @@ public class AddProductController extends HttpServlet {
                     imageName = generateImageUrl(fileName);
 
                     // Thư mục lưu ngoài project
-                    String targetPath = "D:/FPTU/Semester 4/PRJ301/VienBama/MLB_Store/web/images/uploads";
+                    String targetPath = "D:/MLB_Store/images/uploads";
                     File targetDir = new File(targetPath);
                     if (!targetDir.exists()) {
                         targetDir.mkdirs();

@@ -83,7 +83,10 @@
             .product-img {
                 width: 100%;
                 height: 200px;
-                object-fit: cover;
+                object-fit: contain; /* từ cover -> contain để ảnh không bị cắt */
+                background-color: #fff; /* hoặc màu nền trung tính để ảnh nhỏ vẫn rõ ràng */
+                border: 1px solid #444; /* viền nhẹ cho rõ khung ảnh */
+                padding: 4px;
                 border-radius: 4px;
                 margin-bottom: 10px;
             }
@@ -142,7 +145,7 @@
                 <a href="MainController?action=ViewProductPage">Sản phẩm</a>
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
-                        <a href="cart.jsp">Giỏ hàng</a>
+                        <a href="view-cart.jsp">Giỏ hàng</a>
                         <a href="logout.jsp">Đăng xuất</a>
                     </c:when>
                     <c:otherwise>
@@ -155,6 +158,7 @@
         <!-- Main content -->
         <div class="container">
             <h2>Danh sách sản phẩm</h2>
+            ${ MESSAGE }
 
             <c:if test="${not empty errorMessage}">
                 <p style="color: red; text-align: center;">${errorMessage}</p>
@@ -163,10 +167,10 @@
             <div class="products-grid">
                 <c:forEach var="product" items="${LIST_PRODUCT}">
                     <div class="product-card">
-                        <img class="product-img"
-                             src="images/uploads/${product.imgUrl}"
+                        <img src="${pageContext.request.contextPath}/image?name=${product.imgUrl}"
                              alt="${product.productName}"
-                             onerror="this.src='images/default.jpg'">
+                             onerror="this.src='images/default.jpg'"
+                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 4px;" />
                         <div class="product-name">${product.productName}</div>
                         <div class="product-price">₫${product.price}</div>
                         <div class="product-description">${product.description}</div>

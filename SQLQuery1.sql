@@ -90,3 +90,34 @@ SELECT * FROM Users;
 SELECT * FROM Orders;
 SELECT * FROM OrderDetails;
 
+
+INSERT INTO Products (ProductName, Description, Price, Quantity, ImageURL, CategoryID, CreatedAt)
+VALUES
+(N'Nón MLB', N'Nón đẹp', 150.00, 10, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 2, GETDATE()),
+(N'Dép MLB', N'Dép sành điệu', 199.00, 5, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 4, GETDATE()),
+(N'Áo Hoodie', N'Áo ấm mùa đông', 420.00, 8, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Quần Short', N'Quần ngắn thể thao', 215.00, 6, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 3, GETDATE()),
+(N'Vớ cổ cao', N'Vớ cao cấp', 45.00, 15, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 4, GETDATE()),
+(N'Áo thun trắng', N'Áo thun đơn giản', 120.00, 20, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Áo sơ mi kẻ', N'Áo thời trang công sở', 320.00, 12, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Quần jean rách', N'Phong cách đường phố', 380.00, 7, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 3, GETDATE()),
+(N'Giày sneaker', N'Giày thể thao năng động', 650.00, 4, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 2, GETDATE()),
+(N'Áo khoác gió', N'Áo chống gió nhẹ', 490.00, 6, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Túi đeo chéo', N'Túi nhỏ gọn thời trang', 270.00, 9, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 5, GETDATE()),
+(N'Nón bucket', N'Nón cá tính', 130.00, 13, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 2, GETDATE()),
+(N'Dép lê', N'Dép tiện lợi mùa hè', 99.00, 10, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 4, GETDATE()),
+(N'Vớ cổ ngắn', N'Vớ ngắn thể thao', 39.00, 18, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 4, GETDATE()),
+(N'Áo nỉ MLB', N'Áo nỉ mùa đông', 385.00, 5, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Quần nỉ', N'Quần nỉ mặc ở nhà', 210.00, 8, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 3, GETDATE()),
+(N'Áo MLB New', N'Áo thiết kế mới', 299.00, 11, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Áo khoác jeans', N'Cá tính và bụi bặm', 520.00, 3, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 1, GETDATE()),
+(N'Giày MLB trắng', N'Giày trắng hot trend', 700.00, 6, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 2, GETDATE()),
+(N'Balo MLB', N'Balo học sinh sành điệu', 350.00, 9, 'c0cee3ae-f8bf-4efd-b928-d189c8d69c64.jpg', 5, GETDATE());
+
+INSERT INTO Categories (CategoryName, Description) VALUES
+(N'Áo thun', N'Các loại áo thun cotton, thời trang'),       -- ID 1
+(N'Quần jean', N'Quần jean nam nữ các loại'),               -- ID 2
+(N'Áo khoác', N'Áo khoác ấm và thời trang'),                -- ID 3
+(N'Phụ kiện', N'Kính, dây nịt, mũ,...');                   -- ID 4
+
+

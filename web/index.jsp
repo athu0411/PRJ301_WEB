@@ -64,13 +64,13 @@
             }
 
             .hero h2 {
-                font-size: 32px;
-                margin-bottom: 10px;
+                font-size: 36px;
+                margin-bottom: 15px;
             }
 
             .hero p {
-                font-size: 18px;
-                margin-bottom: 20px;
+                font-size: 20px;
+                margin-bottom: 25px;
                 color: var(--text-muted);
             }
 
@@ -95,7 +95,7 @@
 
             .section-title {
                 text-align: center;
-                font-size: 26px;
+                font-size: 28px;
                 margin-bottom: 30px;
             }
 
@@ -172,7 +172,7 @@
                 }
 
                 .hero h2 {
-                    font-size: 26px;
+                    font-size: 28px;
                 }
             }
         </style>
@@ -186,7 +186,10 @@
                 <a href="MainController?action=ViewProductPage">Sản phẩm</a>
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
-                        <a href="cart.jsp">Giỏ hàng</a>
+                        <a href="view-cart.jsp">Giỏ hàng</a>
+                        <c:if test="${sessionScope.user.role eq 'Admin'}">
+                            <a href="MainController?action=ViewAdminProduct">Quản lý</a>
+                        </c:if>
                         <a href="logout.jsp">Đăng xuất</a>
                     </c:when>
                     <c:otherwise>
@@ -197,9 +200,9 @@
         </header>
 
         <section class="hero">
-            <h2>Bộ sưu tập áo MLB 2025</h2>
-            <p>Phong cách thể thao hiện đại, dành riêng cho bạn</p>
-            <a href="product" class="btn">Khám phá ngay</a>
+            <h2>🔥 Bộ sưu tập MLB 2025 đã ra mắt!</h2>
+            <p>Khám phá phong cách thể thao năng động, hiện đại và dẫn đầu xu hướng thời trang cùng MLB</p>
+            <a href="MainController?action=ViewProductPage" class="btn">Khám phá ngay</a>
         </section>
 
         <section class="main-content">
@@ -220,7 +223,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 40px;">
-                <a href="product" class="btn">Xem tất cả sản phẩm</a>
+                <a href="MainController?action=ViewProductPage" class="btn">Xem tất cả sản phẩm</a>
             </div>
         </section>
 

@@ -39,7 +39,7 @@ public class ProductsDAO {
 
     public boolean deleteById(String id) throws SQLException, ClassNotFoundException {
         boolean result = false;
-        String sql = "DELETE FROM products WHERE ProductID = ?";
+        String sql = "DELETE FROM Products WHERE ProductID = ?";
         try ( Connection conn = DatabaseConnection.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, id);
             result = stmt.executeUpdate() > 0;
@@ -70,7 +70,7 @@ public class ProductsDAO {
 
     public boolean updateProduct(Products product) throws SQLException, ClassNotFoundException {
         boolean result = false;
-        String sql = "UPDATE FROM Products set ProductName = ?, Description = ?, Price = ?, Quantity = ?, ImageURL = ?, CategoryID = ? WHERE ProductID = ?";
+        String sql = "UPDATE Products set ProductName = ?, Description = ?, Price = ?, Quantity = ?, ImageURL = ?, CategoryID = ? WHERE ProductID = ?";
         try ( Connection conn = DatabaseConnection.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, product.getProductName());
@@ -79,6 +79,7 @@ public class ProductsDAO {
             stmt.setInt(4, product.getQuantity());
             stmt.setString(5, product.getImgUrl());
             stmt.setInt(6, product.getCategoryID());
+            stmt.setInt(7, product.getProductID());
 
             result = stmt.executeUpdate() > 0;
         }

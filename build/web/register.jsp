@@ -7,28 +7,35 @@
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: #f2f2f2;
+                background-color: #121212;
+                color: #f0f0f0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
             }
+
             .container {
-                background-color: #ffffff;
+                background-color: #1e1e1e;
                 padding: 30px;
                 border-radius: 10px;
                 width: 400px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             }
+
             h2 {
                 text-align: center;
                 margin-bottom: 20px;
+                color: #ffffff;
             }
+
             label {
                 display: block;
                 margin-top: 15px;
                 font-weight: bold;
+                color: #cccccc;
             }
+
             input[type="text"],
             input[type="password"],
             input[type="email"],
@@ -36,11 +43,21 @@
                 width: 100%;
                 padding: 10px;
                 margin-top: 5px;
-                border: 1px solid #ccc;
+                background-color: #2a2a2a;
+                border: 1px solid #444;
                 border-radius: 5px;
                 box-sizing: border-box;
                 font-size: 14px;
+                color: #f0f0f0;
             }
+
+            input[type="text"]::placeholder,
+            input[type="password"]::placeholder,
+            input[type="email"]::placeholder,
+            input[type="tel"]::placeholder {
+                color: #888888;
+            }
+
             input[type="submit"], .back-button {
                 margin-top: 15px;
                 width: 100%;
@@ -50,41 +67,50 @@
                 border-radius: 5px;
                 cursor: pointer;
             }
+
             input[type="submit"] {
-                background-color: #4CAF50;
+                background-color: #388e3c;
                 color: white;
             }
+
             input[type="submit"]:hover {
-                background-color: #45a049;
+                background-color: #2e7d32;
             }
+
             .back-button {
-                background-color: #ccc;
-                color: black;
+                background-color: #555;
+                color: white;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
             }
+
             .back-button:hover {
-                background-color: #bbb;
+                background-color: #666;
             }
+
             .message {
                 text-align: center;
                 padding: 10px;
                 margin-bottom: 15px;
                 border-radius: 5px;
             }
+
             .error {
-                background-color: #f8d7da;
-                color: #842029;
+                background-color: #4b1f1f;
+                color: #f28b82;
             }
+
             .success {
-                background-color: #d1e7dd;
-                color: #0f5132;
+                background-color: #1f3b2d;
+                color: #a5d6a7;
             }
+
             .error-text {
-                color: red;
+                color: #ff6b6b;
                 font-size: 13px;
             }
+
         </style>
     </head>
     <body>
